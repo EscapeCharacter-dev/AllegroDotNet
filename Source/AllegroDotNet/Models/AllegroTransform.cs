@@ -8,16 +8,16 @@ namespace SubC.AllegroDotNet.Models;
 [StructLayout(LayoutKind.Sequential)]
 public struct AllegroTransform
 {
-  public float[,] M
-  {
-    readonly get => m;
-    set => m = value;
-  }
+    public float this[int row, int col]
+    {
+        readonly get => m[row * 4 + col];
+        set => m[row * 4 + col] = value;
+    }
 
-  [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
-  private float[,] m = new float[4,4];
+    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
+    private float[] m = new float[16];
 
-  public AllegroTransform()
-  {
-  }
+    public AllegroTransform()
+    {
+    }
 }
